@@ -10,7 +10,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-chat-detail-component',
-  imports: [CommonModule, FormsModule, RelativeTimePipePipe],
+  imports: [CommonModule, FormsModule, /*RelativeTimePipePipe*/],
   templateUrl: './chat-detail-component.html',
   styleUrl: './chat-detail-component.css',
 })
@@ -26,14 +26,14 @@ export class ChatDetailComponent {
 
 
   ngOnInit() {
-    //busca dentro de la url el paramatro ID
-    this.id = this.route.snapshot.paramMap.get('id') ?? undefined;
-    //busco el chat por id
-    if (this.id) {
-      this.chatSignal = this.chatService.getChatSignal(this.id);
-    } else {
-      this.chatSignal = computed(() => undefined); //chat indefinido
-    }
+    this.route.paramMap.subscribe(params => {
+      this.id = params.get('id') ?? undefined;
+      if (this.id) {
+        this.chatSignal = this.chatService.getChatSignal(this.id);
+      } else {
+        this.chatSignal = computed(() => undefined);
+      }
+    });
   }
 
   send() {
@@ -43,7 +43,17 @@ export class ChatDetailComponent {
     }
     this.chatService.sendMessage(this.id, this.newText.trim(), true);
     this.newText = '';
+
+    setTimeout(() => {
+      this.chatService.autoResponse(this.id!);
+    }, 2000);
+
+    setTimeout(() => {
+      this.chatService.changeStageToLastConexion(this.id!);
+    }, 6000);
   }
+
+
   formatDate(date: string) {
     if (!date) {
       return '';

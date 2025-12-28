@@ -5,4 +5,6 @@ export interface Chat {
     name: string;
     lastMessage?: string;
     messages: Message[];
+    image?: string;
+    stage?: string;
 }

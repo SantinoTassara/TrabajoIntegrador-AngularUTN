@@ -24,6 +24,8 @@ export class ChatService {
         id: '1',
         name: 'Juan Pérez',
         lastMessage: 'Todo bien, vos?',
+        image: 'user-circle.svg',
+        stage: 'Online',
         messages: [
           {
             id: '1',
@@ -43,6 +45,8 @@ export class ChatService {
         id: '2',
         name: 'María López',
         lastMessage: 'Si, Dale',
+        image: 'user-circle.svg',
+        stage: 'Last conexion: 19:24',
         messages: [
           {
             id: '3',
@@ -78,7 +82,9 @@ export class ChatService {
       id: Date.now().toString(),
       name: name,
       lastMessage: '',
-      messages: []
+      messages: [],
+      image: 'user-circle.svg',
+      stage: 'Online'
     };
     this._chats.update((chats) => { return [...chats, newChat] });
     return newChat;
@@ -111,5 +117,72 @@ export class ChatService {
       }
     )
     return new_message
+  }
+
+  autoResponse(chat_id: string) {
+    const new_message: Message = {
+      id: Date.now().toString(),
+      text: 'Respuesta automatica',
+      fromMe: false,
+      date: new Date().toISOString()
+    }
+    this._chats.update(
+      (chats_actuales) => {
+        return chats_actuales.map(
+          (chat) => {
+            /* Si no son el chat que quiero actualizar dejo el mensaje asi como esta */
+            if (chat.id !== chat_id) {
+              return chat
+            }
+            const updated_messages = [...chat.messages, new_message]
+            return {
+              ...chat,
+              messages: updated_messages,
+              lastMessage: 'Respuesta automatica'
+            }
+          }
+        )
+      }
+    )
+    this.chageStageToOnline(chat_id)
+    return new_message
+  }
+
+  chageStageToOnline(chat_id: string) {
+    this._chats.update(
+      (chats_actuales) => {
+        return chats_actuales.map(
+          (chat) => {
+            /* Si no son el chat que quiero actualizar dejo el mensaje asi como esta */
+            if (chat.id !== chat_id) {
+              return chat
+            }
+            return {
+              ...chat,
+              stage: 'Online'
+            }
+          }
+        )
+      }
+    )
+  }
+
+  changeStageToLastConexion(chat_id: string) {
+    this._chats.update(
+      (chats_actuales) => {
+        return chats_actuales.map(
+          (chat) => {
+            /* Si no son el chat que quiero actualizar dejo el mensaje asi como esta */
+            if (chat.id !== chat_id) {
+              return chat
+            }
+            return {
+              ...chat,
+              stage: 'Last conexion: ' + new Date().toLocaleTimeString() //Lograr que solo se muestre hora y minutos
+            }
+          }
+        )
+      }
+    )
   }
 }

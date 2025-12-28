@@ -25,6 +25,7 @@
 .chat-list-header h1 {
     margin: 0;
     font-size: var(--font-size-2xl);
+    cursor: pointer;
 }
 
 .chat-list {
@@ -43,6 +44,9 @@
     border-radius: var(--radius-lg);
     cursor: pointer;
     transition: var(--transition-base);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
 }
 
 .chat-item:hover {
@@ -69,4 +73,18 @@
     text-align: center;
     padding: var(--space-8);
     color: var(--color-text-muted);
+}
+
+.chat-image {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    object-fit: cover;
+}
+
+.chat-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
 }

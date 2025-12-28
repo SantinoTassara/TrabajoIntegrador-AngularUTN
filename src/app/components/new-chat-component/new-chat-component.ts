@@ -27,7 +27,7 @@ export class NewChatComponent {
     if (this.initial.trim()) {
       this.chatService.sendMessage(chat.id, this.initial.trim(), true);
     }
-    this.router.navigate(['/chat', chat.id]);
+    this.router.navigate(['/chats', chat.id]);
   }
 
   cancel() {

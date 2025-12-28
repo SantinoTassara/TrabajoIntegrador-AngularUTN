@@ -1,14 +1,17 @@
 <section class="chat-list-container">
     <header class="chat-list-header">
-        <h1>Chats</h1>
+        <h1 (click)="inicio()">Chats</h1>
         <button (click)="nuevo()" class="btn">Nuevo Chat</button>
     </header>
 
     <ul class="chat-list">
         @for(chat of chatService.chats(); track chat.id) {
         <li (click)="open(chat.id)" class="chat-item">
-            <div class="chat-name">{{ chat.name }}</div>
-            <div class="chat-preview">{{ chat.lastMessage }}</div>
+            <img class="chat-image" src="{{ chat.image }}" alt="">
+            <div class="chat-info">
+                <div class="chat-name">{{ chat.name }}</div>
+                <div class="chat-preview">{{ chat.lastMessage }}</div>
+            </div>
         </li>
         }
         @empty {

@@ -10,7 +10,7 @@
             <input type="text" [(ngModel)]="initial" name="initial" class="input">
         </label>
         <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Enviar</button>
+            <button type="submit" (click)="create()" class="btn btn-primary">Enviar</button>
             <button type="button" (click)="cancel()" class="btn btn-secondary">Cancelar</button>
         </div>
     </form>

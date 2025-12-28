@@ -5,7 +5,7 @@
 .new-chat-container {
     display: flex;
     flex-direction: column;
-    gap: var(--space-6);
+    gap: var(--space-4);
     max-width: 600px;
     margin: 0 auto;
 }
@@ -14,6 +14,7 @@
     font-size: var(--font-size-xl);
     border-bottom: 1px solid var(--color-border);
     padding-bottom: var(--space-2);
+    padding-top: var(--space-4);
 }
 
 .form {

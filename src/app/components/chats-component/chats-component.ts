@@ -24,4 +24,9 @@ export class ChatsComponent {
   nuevo() {
     this.router.navigate(['/nuevo'])
   }
+
+  inicio() {
+    this.router.navigate(['/'])
+  }
+
 }

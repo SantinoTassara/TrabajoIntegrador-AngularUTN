@@ -6,13 +6,19 @@ import { ChatsComponent } from './components/chats-component/chats-component';
 
 export const routes: Routes = [
     {
-        path: 'chats', component: ChatsComponent,
+        path: '', redirectTo: 'chats', pathMatch: 'full'
+    },
+    {
+        path: 'chats', component: ChatDetailComponent,
     },
     {
         path: 'chats/:id', component: ChatDetailComponent,
     },
     {
         path: 'nuevo', component: NewChatComponent
+    },
+    {
+        path: '**', component: EmptyChatComponent
     }
 ];
 

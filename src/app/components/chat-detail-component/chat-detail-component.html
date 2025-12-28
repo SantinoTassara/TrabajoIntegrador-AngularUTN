@@ -1,6 +1,17 @@
 @if (chatSignal()) {
 <header class="chat-header">
-    <h2>{{chatSignal()?.name}}</h2>
+    <div class="chat-header-info">
+        <h2>{{chatSignal()?.name}}</h2>
+        <div class="chat-stage">
+            @if(chatSignal()?.stage === 'Online') {
+            <span class="status-dot" [class.online]="chatSignal()?.stage === 'Online'"></span>
+            {{chatSignal()?.stage}}
+            } @else {
+            <span class="status-dot"></span>
+            {{chatSignal()?.stage}}
+            }
+        </div>
+    </div>
     <span class="badge">{{chatSignal()?.messages?.length}} mensajes</span>
 </header>
 
@@ -9,12 +20,12 @@
     @if (message.fromMe) {
     <div class="message-bubble from-me">
         <p class="message-text">{{message.text}}</p>
-        <div class="message-meta">{{formatDate(message.date) | relativeTimePipe}}</div>
+        <div class="message-meta">{{formatDate(message.date)}}</div>
     </div>
     } @else {
     <div class="message-bubble">
         <p class="message-text">{{message.text}}</p>
-        <div class="message-meta">{{formatDate(message.date) | relativeTimePipe}}</div>
+        <div class="message-meta">{{formatDate(message.date)}}</div>
     </div>
     }
     } @empty {
@@ -29,7 +40,7 @@
 </form>
 } @else {
 <div class="empty-state">
-    <h2>Chat no encontrado</h2>
-    <p>Selecciona otro chat para continuar.</p>
+    <h2>Selecciona un chat</h2>
+    <p>Selecciona un chat para comenzar a hablar.</p>
 </div>
 }
