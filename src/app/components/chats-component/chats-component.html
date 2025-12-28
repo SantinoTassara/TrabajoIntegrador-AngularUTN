@@ -1,0 +1,18 @@
+<section class="chat-list-container">
+    <header class="chat-list-header">
+        <h1>Chats</h1>
+        <button (click)="nuevo()" class="btn">Nuevo Chat</button>
+    </header>
+
+    <ul class="chat-list">
+        @for(chat of chatService.chats(); track chat.id) {
+        <li (click)="open(chat.id)" class="chat-item">
+            <div class="chat-name">{{ chat.name }}</div>
+            <div class="chat-preview">{{ chat.lastMessage }}</div>
+        </li>
+        }
+        @empty {
+        <li class="empty-state">No hay chats disponibles.</li>
+        }
+    </ul>
+</section>

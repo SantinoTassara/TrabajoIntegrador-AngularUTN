@@ -1,0 +1,17 @@
+<div class="new-chat-container">
+    <h2>Nuevo Chat</h2>
+    <form class="form">
+        <label class="form-group">
+            <span class="label-text">Nombre:</span>
+            <input type="text" [(ngModel)]="name" name="name" required class="input">
+        </label>
+        <label class="form-group">
+            <span class="label-text">Mensaje Inicial (opcional):</span>
+            <input type="text" [(ngModel)]="initial" name="initial" class="input">
+        </label>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+            <button type="button" (click)="cancel()" class="btn btn-secondary">Cancelar</button>
+        </div>
+    </form>
+</div>

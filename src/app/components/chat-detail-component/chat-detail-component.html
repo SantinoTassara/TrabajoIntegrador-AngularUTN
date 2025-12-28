@@ -1,0 +1,35 @@
+@if (chatSignal()) {
+<header class="chat-header">
+    <h2>{{chatSignal()?.name}}</h2>
+    <span class="badge">{{chatSignal()?.messages?.length}} mensajes</span>
+</header>
+
+<div class="messages-container">
+    @for (message of chatSignal()?.messages ?? []; track message.id) {
+    @if (message.fromMe) {
+    <div class="message-bubble from-me">
+        <p class="message-text">{{message.text}}</p>
+        <div class="message-meta">{{formatDate(message.date) | relativeTimePipe}}</div>
+    </div>
+    } @else {
+    <div class="message-bubble">
+        <p class="message-text">{{message.text}}</p>
+        <div class="message-meta">{{formatDate(message.date) | relativeTimePipe}}</div>
+    </div>
+    }
+    } @empty {
+    <div class="empty-state">No hay mensajes aún. Comienza la conversación.</div>
+    }
+</div>
+
+<form (ngSubmit)="send()" class="chat-controls">
+    <input [(ngModel)]="newText" name="text" placeholder="Escribe un mensaje..." required class="input"
+        autocomplete="off" />
+    <button type="submit" class="btn">Enviar</button>
+</form>
+} @else {
+<div class="empty-state">
+    <h2>Chat no encontrado</h2>
+    <p>Selecciona otro chat para continuar.</p>
+</div>
+}
