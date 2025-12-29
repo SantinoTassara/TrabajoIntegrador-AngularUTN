@@ -22,7 +22,7 @@ export class ChatService {
     return [
       {
         id: '1',
-        name: 'Juan Pérez',
+        name: 'Juan Perez',
         lastMessage: 'Todo bien, vos?',
         image: 'user-circle.svg',
         stage: 'Online',
@@ -43,7 +43,7 @@ export class ChatService {
       },
       {
         id: '2',
-        name: 'María López',
+        name: 'Maria Lopez',
         lastMessage: 'Si, Dale',
         image: 'user-circle.svg',
         stage: 'Last conexion: 19:24',
@@ -102,7 +102,6 @@ export class ChatService {
       (chats_actuales) => {
         return chats_actuales.map(
           (chat) => {
-            /* Si no son el chat que quiero actualizar dejo el mensaje asi como esta */
             if (chat.id !== chat_id) {
               return chat
             }
@@ -130,7 +129,6 @@ export class ChatService {
       (chats_actuales) => {
         return chats_actuales.map(
           (chat) => {
-            /* Si no son el chat que quiero actualizar dejo el mensaje asi como esta */
             if (chat.id !== chat_id) {
               return chat
             }
@@ -153,7 +151,6 @@ export class ChatService {
       (chats_actuales) => {
         return chats_actuales.map(
           (chat) => {
-            /* Si no son el chat que quiero actualizar dejo el mensaje asi como esta */
             if (chat.id !== chat_id) {
               return chat
             }
@@ -168,17 +165,21 @@ export class ChatService {
   }
 
   changeStageToLastConexion(chat_id: string) {
+    const timeOptions: Intl.DateTimeFormatOptions = {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false
+    };
     this._chats.update(
       (chats_actuales) => {
         return chats_actuales.map(
           (chat) => {
-            /* Si no son el chat que quiero actualizar dejo el mensaje asi como esta */
             if (chat.id !== chat_id) {
               return chat
             }
             return {
               ...chat,
-              stage: 'Last conexion: ' + new Date().toLocaleTimeString() //Lograr que solo se muestre hora y minutos
+              stage: 'Last conexion: ' + new Date().toLocaleTimeString('es-ES', timeOptions) //Lograr que solo se muestre hora y minutos
             }
           }
         )

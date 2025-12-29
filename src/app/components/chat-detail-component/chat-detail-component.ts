@@ -5,12 +5,12 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ChatService } from '../../services/chat';
 
-import { RelativeTimePipePipe } from '../../pipes/relative-time-pipe-pipe';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { SetTimeFormatPipe } from '../../pipes/set-time-format-pipe';
 
 @Component({
   selector: 'app-chat-detail-component',
-  imports: [CommonModule, FormsModule, /*RelativeTimePipePipe*/],
+  imports: [CommonModule, FormsModule, SetTimeFormatPipe],
   templateUrl: './chat-detail-component.html',
   styleUrl: './chat-detail-component.css',
 })
@@ -38,7 +38,6 @@ export class ChatDetailComponent {
 
   send() {
     if (!this.id || !this.newText.trim()) {
-      //No se puede enviar si la condicion no es verdadera
       return;
     }
     this.chatService.sendMessage(this.id, this.newText.trim(), true);

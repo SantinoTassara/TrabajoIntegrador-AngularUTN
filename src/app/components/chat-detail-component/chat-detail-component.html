@@ -20,12 +20,12 @@
     @if (message.fromMe) {
     <div class="message-bubble from-me">
         <p class="message-text">{{message.text}}</p>
-        <div class="message-meta">{{formatDate(message.date)}}</div>
+        <div class="message-meta">{{message.date | setTimeFormat}}</div>
     </div>
     } @else {
     <div class="message-bubble">
         <p class="message-text">{{message.text}}</p>
-        <div class="message-meta">{{formatDate(message.date)}}</div>
+        <div class="message-meta">{{message.date | setTimeFormat}}</div>
     </div>
     }
     } @empty {
