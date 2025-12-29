@@ -82,7 +82,7 @@
     align-self: flex-end;
     max-width: 80%;
     margin-left: auto;
-    padding-right: var(--space-8);
+    padding-right: var(--space-4);
 }
 
 @keyframes fadeIn {
