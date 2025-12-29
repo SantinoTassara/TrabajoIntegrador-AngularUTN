@@ -1,58 +1,56 @@
-# TrabajoIntegrador
+# Trabajo Integrador - Angular - SANTINO TASSARA
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.3.
+## Instalación
 
-## Development server
+Antes de incializar el proyecto se debera instalar las dependencias del mismo con el siguiente comando:
 
-Comando para arrancar el programa en un Servidor local:
+```bash
+npm install
+```
+
+## Ejecución
+
+Para arrancar el servidor de desarrollo:
 
 ```bash
 ng serve
 ```
 
+Una vez iniciado, abre tu navegador en `http://localhost:4200/`. La aplicación detectará cambios en los archivos y se recargará automáticamente.
 
-## Code scaffolding
+## Estructura del Proyecto
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+El código fuente principal se organiza dentro de `src/app`:
 
-```bash
-ng generate component component-name
-```
+- **components/**: Contiene la lógica visual y maquetación.
+  - `chats-component`: Listado de conversaciones.
+  - `chat-detail-component`: Detalle de una conversación específica.
+  - `new-chat-component`: Interfaz para crear nuevas conversaciones.
+  - `empty-chat`: Componente mostrado cuando no se ha seleccionado ninguna ruta válida o contenido.
+- **services/**: Contiene los servicios encargados de la lógica de negocio y llamadas a APIs/datos.
+- **pipes/**: Pipes personalizados para transformación de datos en los templates.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Rutas
 
-```bash
-ng generate --help
-```
+Las rutas de navegación están definidas de la siguiente manera:
 
-## Building
+| Ruta | Componente | Descripción |
+|------|------------|-------------|
+| `/` | - | Redirección automática a `/chats`. |
+| `/chats` | `ChatDetailComponent` | Vista principal de chats. |
+| `/chats/:id` | `ChatDetailComponent` | Vista de detalle de un chat específico (donde `:id` es el identificador). |
+| `/nuevo` | `NewChatComponent` | Página para crear una nueva conversación. |
+| `**` | `EmptyChatComponent` | Ruta por defecto para URLs no existentes (404). |
 
-To build the project run:
+### Verificación Manual
 
-```bash
-ng build
-```
+1. Ejecuta `ng serve` para levantar el proyecto.
+2. Ingresa a `http://localhost:4200`.
+3. Verifica que la URL cambie automáticamente a `/chats`.
+4. Pruebe navegar a `/nuevo` o seleccionar el boton "Nuevo Chat" y verifica que se muestre el componente de nuevo chat.
+5. Pruebe seleccionar un chat existente y verifica que se muestre el detalle del chat.
+6. Enviar un mensaje desde el chat y ver la respuesta automatica y el cambio de estado del chat.
+7. Navegar entre los chats y verificar que se muestre el detalle del chat y enviar mensajes en los mismos.
+8. Prueba de responsive: Toque f12 y verifique que funcione la aplicacion correctamente en dispositivos moviles.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
